@@ -12,19 +12,18 @@ module Enumerable
   end
 
   def my_select
-    for i in collect()
-      if block_given?
-        yield i if true
-      end
+    if block_given?
+      collect=[]
+      self.my_each {|x| collect << x if yield x}
+      collect
     end
   end
 
   def my_all?
-    for i in collect()
       if block_given?
-
+      self.each {|x| return false unless yield x}
+      return true
       end
-    end
   end
 
 end

@@ -22,10 +22,9 @@ module Enumerable
   def my_all?
     for i in collect()
       if block_given?
-        return yield i if false
+
       end
     end
   end
-
 
 end

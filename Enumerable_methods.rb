@@ -18,4 +18,14 @@ module Enumerable
 #hash
 
   def my_select
+    for i in collect()
+      if block_given?
+        yield i if true
+      end
+    end 
   end
+
+# [1,2,3,4,5].my_select { |num|  num.even?  }   #=> [2, 4]
+
+
+end

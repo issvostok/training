@@ -26,4 +26,11 @@ module Enumerable
       end
   end
 
+  def my_any?
+      if block_given?
+      self.each {|x| return true if yield x}
+      return false
+      end
+  end
+
 end

@@ -33,4 +33,11 @@ module Enumerable
       end
   end
 
+  def my_none?
+      if block_given?
+      self.each {|x| return true unless yield x}
+      return false
+      end
+  end
+
 end

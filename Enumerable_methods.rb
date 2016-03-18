@@ -22,7 +22,16 @@ module Enumerable
       if block_given?
         yield i if true
       end
-    end 
+    end
+  end
+
+  def my_all?
+    for i in collect()
+      if block_given?
+        while yield i == true
+        end
+      end
+    end
   end
 
 # [1,2,3,4,5].my_select { |num|  num.even?  }   #=> [2, 4]

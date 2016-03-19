@@ -3,8 +3,8 @@ module Enumerable
     for i in collect()
       yield i if block_given?
     end
-  end
 
+  end
   def my_each_with_index
     for item, index in collect()
       yield item, index if block_given?
@@ -21,22 +21,24 @@ module Enumerable
 
   def my_all?
       if block_given?
-      self.each {|x| return false unless yield x}
-      return true
+        self.my_each {|x| return false unless yield x}
+        return true
+      else return false
       end
   end
 
   def my_any?
       if block_given?
-      self.each {|x| return true if yield x}
-      return false
+        self.my_each {|x| return true if yield x}
+        return false
+      else return true
       end
   end
 
   def my_none?
       if block_given?
-      self.each {|x| return false if yield x}
-      return true
+        self.my_each {|x| return false if yield x}
+        return true
       end
   end
 
@@ -54,5 +56,10 @@ module Enumerable
       end
   end
 
+  def my_map
+    new_array = []
+    self.my_each {|x| new_array << yield(x)}
+    new_array
+  end
 
 end

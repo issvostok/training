@@ -35,9 +35,24 @@ module Enumerable
 
   def my_none?
       if block_given?
-      self.each {|x| return true unless yield x}
-      return false
+      self.each {|x| return false if yield x}
+      return true
       end
   end
+
+  def my_count(argument = nil)
+      if block_given?
+        collect=[]
+        self.my_each {|x| collect << x if yield x}
+        collect.length
+      elsif argument != nil
+        count = 0
+        self.my_each {|x| count += 1 if x == argument}
+        count
+      else
+        self.length
+      end
+  end
+
 
 end
